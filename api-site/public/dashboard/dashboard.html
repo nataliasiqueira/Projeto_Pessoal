@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estante Viajante | Dashboards</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="dashboards.css">
+    <script src="../js/funcoes.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+
+</head>
+
+<body onload="validarSessao(), atualizarFeed()">
+    <!-- <body onload="validarSessao()"> -->
+
+    <div class="janela">
+        <div class="header-left">
+            <h1>Estante Viajante</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Relatório</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+
+                <h3>Gráficos</h3>
+
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Feed de comentários</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+            <h1>Acompanhe seu desenvolvimento!</h1>
+            <div class="graph">
+                <canvas id="canvas_grafico" style="width: 100%; height: 80vh"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<!-- COMENTADO PARA NÃO DEIXAR A API LENTA ENQUANTO ARRUMO HTML/CSS -->
+<script>
+
+    let proximaAtualizacao;
+
+    window.onload = obterDadosGrafico(1);
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    //verificar_autenticacao();
+
+    // altere aqui como os dados serão exibidos
+    // e como são recuperados do BackEnd
+    function obterDadosGrafico(idLivro) {
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idLivro}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, idLivro);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    // só altere aqui se souber o que está fazendo!
+    function plotarGrafico(resposta, idLivro) {
+        console.log('iniciando plotagem do gráfico...');
+        var labels = [];
+        var dados = [];
+        var dadosTotalPgs = [];
+        for (var livro = 0; livro < resposta.length; livro++) {
+            labels.push(resposta[livro].nomeLivro);
+            dados.push(resposta[livro].pgsLidas);
+            dadosTotalPgs.push(resposta[livro].totalPgs);
+        }
+        const pgsLidas = {
+            type: "bar",
+            data: { /*FAZER UM FOR PARA PEGAR OS DADOS AUTOMATICAMENTE*/
+                labels,
+                datasets: [
+                    {
+                        label: "Páginas lidas pelo usuário",
+                        data: dados,
+                        backgroundColor: "#AF7A6D",
+                        borderColor: "#FFF"
+                    },
+
+                    {
+                        label: "Total de Páginas do livro",
+                        data: dadosTotalPgs,
+                        backgroundColor: "#2d9975",
+                        borderColor: "#FFF"
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: true,
+                    text: `Histórico de leitura de ${b_usuario.innerHTML}`
+                }
+                /* maintainAspectRatio (manter relação de aspecto) 
+                    caso true: ele "obdece" a altura e largura que colocamos
+                    caso false: ele não "obdece" a altura e largura que colocamos e se ajusta ao componente pai
+                */
+            }
+        }
+        var pgsLidasVar = new Chart(document.getElementById("canvas_grafico"), pgsLidas);
+    }
+</script>

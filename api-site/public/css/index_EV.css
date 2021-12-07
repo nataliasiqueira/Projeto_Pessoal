@@ -1,0 +1,633 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nanum Myeongjo';
+  font-style: normal;
+  src: url(https://fonts.google.com/specimen/Nanum+Myeongjo#standard-styles);
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  background-color: white;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  /*border: 3px solid yellow;*/
+}
+
+/*HEADER*/
+
+.header {
+  color: #000000ec;
+  font-size: large;
+  border-bottom: 3px solid #ffffff;
+  margin-bottom: 1px;
+  height: 120px;
+  /*border: 3px solid rgb(106, 10, 109);*/
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 80px;
+  /*border: 3px solid pink;*/
+}
+
+.header .container .logo {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-left: 25px;
+  width: 10%;
+  height: 40px;
+  /*border: 3px solid rgb(78, 22, 31);*/
+}
+
+.header .container .logo img {
+  /*border: 3px solid pink;*/
+  width: 180px;
+  height: 180px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  margin-top: 15px;
+  margin-right: 0px;
+}
+
+.header .container #titulo {
+  justify-content: center;
+  font-size: 45px;
+  width: 400px;
+  margin-top: 25px;
+  font-style: italic;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  /*border: 3px solid rgb(233, 200, 205);*/
+}
+
+.header .container:hover #titulo {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.header a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.pagina_atual {
+  font-weight: 800;
+  font-size: larger;
+}
+
+.navbar {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+  color: #212e4d;
+  font-size: large;
+  margin-top: 60px;
+  /*border: 3px solid green;*/
+}
+
+.navbar a:hover {
+  background-color: rgba(39, 101, 112, 0.452);
+  transition-duration: 0.5s;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.navbar .pagina_atual:hover {
+  background-color: rgba(39, 101, 112, 0.452);
+  transition-duration: 0.5s;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+/* BANNER */
+
+.banner {
+  height: 712.44px;
+  width: 100%;
+  margin-top: 5px;
+  /*border: 3px solid yellow;*/
+  border-bottom: 5px solid whitesmoke;
+  border-top: 3px solid rgb(41, 40, 39);
+}
+
+.banner .container {
+  /*border: 3px solid green;*/
+  width: 100%;
+  height: 500px;
+  display: flex;
+  background-size: cover;
+}
+
+#video {
+  position: absolute;
+}
+
+.banner .overlayText {
+  position: absolute;
+  top: 24%;
+  left: 5px;
+  z-index: 1;
+}
+
+.banner .topText {
+  color: white;
+  font-size: 100px;
+  /*align-self: flex-start;*/
+  margin-top: 40%;
+  margin-left: 20px;
+}
+
+.banner span {
+  font-weight: 800;
+}
+
+/* QUOTE */
+
+.quote {
+  text-align: center;
+  font-size: 2rem;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  border: 2px solid black;
+  height: 150px;
+  max-width: 40%;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+blockquote {
+  color: rgba(0, 0, 0, 0.883);
+  text-shadow: -1px 1px rgba(8, 8, 8, 0.561);
+  font-style: italic;
+  position: relative;
+  font-size: 28px;
+  z-index: 10;
+}
+.aspas1 {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 70px;
+  height: 80px;
+  text-align: left;
+  z-index: 10;
+  font-size: 7rem;
+  color: rgba(50, 112, 39, 0.452);
+  background-color: white;
+  /*border: 3px solid yellow;*/
+}
+.aspas2 {
+  position: absolute;
+  bottom: -20px;
+  right: -40px;
+  width: 70px;
+  height: 80px;
+  text-align: right;
+  z-index: 10;
+  font-size: 7rem;
+  color: rgba(50, 112, 39, 0.452);
+  background-color: white;
+  /* border: 3px solid yellow;*/
+}
+
+/* DESENVOLVIMENTO LIVROS */
+
+.desenvolvimento h2 {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  margin-top: 50px;
+  margin-bottom: 5px;
+  font-size: 50px;
+  color: white;
+  background: #1d441383;
+  background-clip: content-box;
+  border-radius: 20px;
+  /*border: 3px solid rgb(255, 0, 212);*/
+}
+
+.desenvolvimento .container .lista-genero {
+  margin-left: 86%;
+  border-radius: 10px;
+  border-style: double;
+  padding: 3px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: medium;
+  border-color: darkslategrey;
+}
+
+.container .article-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 30px;
+  margin: 20px;
+  margin-bottom: 30px;
+}
+
+.imagem-card {
+  margin: 0;
+  padding-top: 5px;
+  overflow: hidden;
+}
+
+.imagem-card img {
+  width: 200px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 5px;
+  border-radius: 20px 20px 0 0;
+}
+
+.article-card {
+  background: white;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.article-card:hover {
+  box-shadow: 0 4px 20px 0 rgba(39, 101, 112, 0.452);
+  cursor: pointer;
+}
+
+.conteudo-card {
+  padding: 1rem;
+  margin-bottom: 40px;
+  /*border: 3px solid orange;*/
+}
+
+.conteudo-card .genero-livro {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: #212e4d;
+  display: block;
+  text-decoration: none;
+}
+
+.conteudo-card .titulo-card {
+  margin: 1rem 0;
+  color: #212124;
+}
+
+.conteudo-card .texto-card {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #000000;
+  margin: 0;
+}
+
+/*CALCULADORA*/
+
+.calculadora h2 {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  color: white;
+  background: #1d441383;
+  background-clip: content-box;
+  border-radius: 20px;
+}
+
+.calculadora .container .span-input {
+  display: block;
+  flex-wrap: wrap;
+  flex-direction: row;
+  float: left;
+  justify-content: space-evenly;
+  margin-left: 5px;
+  width: 50%;
+  height: max-content;
+}
+
+.calculadora .container span {
+  margin-left: 10%;
+  font-size: 22px;
+}
+
+.calculadora .container input,
+#lista_avaliacao {
+  border-radius: 10px;
+  height: 25px;
+  width: 190px;
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.calculadora .container button {
+  margin-left: 10%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 3px;
+  color: white;
+  background-color: rgba(71, 97, 47, 0.733);
+  width: 500px;
+  border-radius: 10px;
+  border-color: #00000046;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.calculadora .container button:hover {
+  transition: 0.3s;
+  background-color: #2a3e62c5;
+}
+
+.container #div_resultado_calculadora {
+  display: flex;
+  float: right;
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgba(71, 97, 47, 0.486);
+  border-radius: 20px;
+  margin-top: -280px;
+  margin-right: 30px;
+  height: 230px;
+  width: 50%;
+  /*border: 3px solid yellow;*/
+}
+
+.container #div_resultado_calculadora img {
+  height: 400px;
+  width: 400px;
+  margin-left: 120px;
+  margin-top: -80px;
+}
+
+/*INDICAÇÃO ALEATÓRIA
+.container .indicacao-aleatoria {
+  height: 200px;
+}
+
+.indicacao-aleatoria h3 {
+  display: flex;
+  float: left;
+  margin-left: 100px;
+  font-size: xx-large;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: lighter;
+  color: rgb(71, 97, 47);
+}
+
+.indicacao-aleatoria p {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 30px;
+}
+
+.calculadora .indicacao-aleatoria button {
+  margin-left: 45%;
+  margin-bottom: 30px;
+  padding: 3px;
+  color: white;
+  background-color: rgba(71, 97, 47, 0.733);
+  width: 140px;
+  border-radius: 10px;
+  border-color: #00000046;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.calculadora .indicacao-aleatoria button:hover {
+  transition: 0.3s;
+  background-color: #2a3e62c5;
+}
+
+.calculadora #div_resultado_indicacao {
+  height: 150px;
+  width: 99%;
+  border: 3px solid rgb(255, 0, 0);
+}*/
+
+/* FOOTER */
+
+.footer {
+  background-color: rgb(42, 85, 35);
+  height: 100px;
+  width: 100vw;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+/* LOGIN */
+
+.banner-login {
+  color: white;
+  height: 550px;
+  /* border: 3px solid yellow; */
+  background-image: url('.././assets/imgs/bg-jelly-fish-para_outras_pags.png');
+  background-size: cover;
+}
+
+.banner-login .container {
+  height: 550px;
+  /* border: 3px solid green; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-login {
+  color: #212e4d;
+}
+
+.banner-login .card {
+  background-color: #e5e5e5;
+  height: 450px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.banner-login a {
+  color: white;
+  text-decoration: none;
+}
+
+.banner-login #div_erros_login {
+  margin-top: 15px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* FORMULARIO */
+
+input {
+  height: 30px;
+  border: 2px solid #212e4d;
+  border-radius: 10px;
+}
+
+.btn {
+  font-family: 'Exo 2', sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #212e4d;
+  width: 120px;
+  align-self: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-div {
+  width: 50px;
+  /* border: 3px solid pink; */
+  margin: auto;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+/* PAGINA DOS GRÁFICOS */
+
+.janela {
+  display: flex;
+  width: 100vw;
+  /* height: 100vh; */
+}
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-right: 3px solid #32b9cd;
+  background-color: #212124;
+  /* border: 3px solid pink; */
+}
+
+.dash-right {
+  display: flex;
+  width: 75%;
+  height: fit-content;
+  background-color: #161618;
+  position: relative;
+  top: 0;
+  left: 25%;
+}
+
+.header-left h1 {
+  color: #32b9cd;
+}
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: #e3b062;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
+
+.btn-nav {
+  width: 40%;
+  color: white;
+  background-color: #212e4d;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.btn-nav-white {
+  width: 40%;
+  background-color: white;
+  border: 3px solid #212e4d;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.btn-nav-white h3 {
+  color: #212e4d;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-nav h3,
+.btn-logout h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-logout {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #32b9cd;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+/* pagina extra - simulador */
+.simulador {
+  color: white;
+}

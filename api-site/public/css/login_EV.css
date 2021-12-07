@@ -1,0 +1,252 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nanum Myeongjo';
+  font-style: normal;
+  src: url(https://fonts.google.com/specimen/Nanum+Myeongjo#standard-styles);
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  background-color: white;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  /*border: 3px solid yellow;*/
+}
+
+/*HEADER*/
+
+.header {
+  color: #000000ec;
+  font-size: large;
+  border-bottom: 3px solid #ffffff;
+  margin-bottom: 1px;
+  height: 120px;
+  /*border: 3px solid rgb(106, 10, 109);*/
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 80px;
+  /*border: 3px solid pink;*/
+}
+
+.header .container .logo {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-left: 25px;
+  width: 10%;
+  height: 40px;
+  /*border: 3px solid rgb(78, 22, 31);*/
+}
+
+.header .container .logo img {
+  /*border: 3px solid pink;*/
+  width: 180px;
+  height: 180px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  margin-top: 15px;
+  margin-right: 0px;
+}
+
+.header .container #titulo {
+  justify-content: center;
+  font-size: 45px;
+  width: 400px;
+  margin-top: 25px;
+  font-style: italic;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  /*border: 3px solid rgb(233, 200, 205);*/
+}
+
+.header .container:hover #titulo {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.header a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.pagina_atual {
+  font-weight: 800;
+  font-size: larger;
+}
+
+.navbar {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+  color: #212e4d;
+  font-size: large;
+  margin-top: 60px;
+  /*border: 3px solid green;*/
+}
+
+.navbar a:hover {
+  background-color: rgba(39, 101, 112, 0.452);
+  transition-duration: 0.5s;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.navbar .pagina_atual:hover {
+  background-color: rgba(39, 101, 112, 0.452);
+  transition-duration: 0.5s;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+/* LOGIN */
+
+.banner {
+  color: white;
+  height: 550px;
+  border-top: 3px solid rgb(41, 40, 39);
+  /*background-image: url('.././assets/imgs/bg-jelly-fish-para_outras_pags.png');*/
+  background-size: cover;
+  /*border: 3px solid yellow;*/
+}
+
+.banner .container {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*border: 3px solid green;*/
+}
+
+.banner {
+  color: rgb(255, 255, 255);
+}
+
+.banner .card-medio {
+  background-color: rgba(50, 112, 39, 0.377);
+  height: 450px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  font-size: large;
+  /*border: 3px solid green;*/
+}
+
+.banner .card-medio {
+  background-color: rgba(50, 112, 39, 0.377);
+  height: 450px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  font-size: large;
+  /*border: 3px solid green;*/
+}
+
+.banner #div_erros_login {
+  margin-top: 15px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* FORMULARIO */
+
+input {
+  height: 30px;
+  border: 2px solid rgba(50, 112, 39, 0.377);
+  border-radius: 10px;
+}
+
+input #nome_input,
+#email_input,
+#senha_input,
+#confirmacao_senha_input {
+  height: 30px;
+  border: 2px solid rgba(50, 112, 39, 0.377);
+  border-radius: 10px;
+}
+
+.btn-entrar,
+.btn-cadastrar {
+  font-family: 'Exo 2', sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: rgba(50, 112, 39, 0.753);
+  width: 120px;
+  align-self: center;
+}
+
+.btn-entrar:hover {
+  background-color: rgb(38, 66, 33);
+  transition: 0.3s;
+}
+
+.btn-cadastrar:hover {
+  background-color: rgb(38, 66, 33);
+  transition: 0.3s;
+}
+
+.div-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-div {
+  width: 50px;
+  /* border: 3px solid pink; */
+  margin: auto;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: rgb(42, 85, 35);
+  height: 100px;
+  width: 100%;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  /*border: 3px solid green;*/
+}
+
+h4 {
+  align-self: center;
+  margin: 0;
+  padding: 0;
+}

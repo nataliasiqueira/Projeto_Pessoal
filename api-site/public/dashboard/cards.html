@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="./assets/logo/icon_EV_black.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem vindo!</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="dashboards.css">
+
+    <script src="../js/funcoes.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.google.com/specimen/Nanum+Myeongjo#standard-styles" rel="stylesheet">
+</head>
+
+<body onload="validarSessao()">
+
+    <div class="janela">
+        <div class="header-left dash-header">
+            <h1>Estante Viajante</h1>
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+            <div class="btn-nav">
+                <h3>Relatório</h3>
+            </div>
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Gráficos</h3>
+                </a>
+            </div>
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Feed de comentários</h3>
+                </a>
+            </div>
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+        </div>
+
+        <div class="calculadora">
+            <div class="container-calculadora">
+                <h2>Crie uma lista dos seus livros favoritos e os que ainda quer ler!</h2>
+                <div class="span-input" style="text-align: center;">
+                    <span class="span-nome-livro">Nome do livro:</span> <input type="text" id="input_livro_atual">
+                    <br>
+                    <span class="autor_livro">Qual o autor do livro?</span> <input type="text" id="input_autor_livro">
+                    <br>
+                    <span class="genero_livro">Selecione o gênero do livro:</span> <select id="lista_genero_livro">
+                        <option value="0">Gênero</option>
+                        <option value="Auto Ajuda">Auto Ajuda</option>
+                        <option value="Ciências">Ciências</option>
+                        <option value="Economia">Economia</option>
+                        <option value="Fantasia">Fantasia</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Ficção">Ficção</option>
+                        <option value="História">História</option>
+                        <option value="Mistério/Terror">Mistério/Terror</option>
+                        <option value="Material Acadêmico">Material Acadêmico</option>
+                    </select>
+                    <br>
+                    <span class="qtd-pgs">Quantas páginas tem no total?</span> <input type="number"
+                        id="input_total_pgs">
+                    <br>
+                    <span class="qtd-pgs-lidas">Quantas páginas você já leu?</span> <input type="number"
+                        id="input_pgs_lidas">
+                    <br>
+                    <span class="qtd-cadastros">Você já cadastrou <span id="numero_cadastro">0</span> livros.</span>
+                </div>
+                <!--fim div span-input-->
+                <button class="btn-lista" onclick="cadastrar()">Cadastrar livro</button>
+                <button class="btn-lista" onclick="listar()">Minha lista</button>
+
+                <div id="div_resultado_lista"></div>
+
+                <div id="div_dashboard"></div>
+
+                <div class="indicacao-aleatoria">
+                    <h3>Agora que você já sabe seu ritmo de leitura, que tal uma indicação de livro aleatória?</h3>
+                    <button onclick="indicacao_aleatoria()">Clique aqui!</button>
+                    <div id="div_resultado_indicacao">
+                        <p id="numero_aleatorio"></p>
+                    </div>
+                </div>
+                <!--fim div indicacao-aleatoria-->
+            </div>
+            <!--fim div container-->
+        </div>
+        <!--fim div calculadora-->
+    </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var lista_livro = []
+    var lista_autor = []
+    var lista_genero = []
+    var lista_total_pgs = []
+    var lista_pgs_lidas = []
+    var qtd_cadastro = 0
+    // COLOCAR TODA A FUNÇÃO CADASTRAR AQUI. PARA ENVIAR OS DADOS PARA O BD E PARA CRIAR A LISTA NA DIV DA PÁGINA TBM!//
+    function cadastrar() {
+        //aguardar();
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var nomeLivroVar = input_livro_atual.value;
+        var autorVar = input_autor_livro.value;
+        var generoVar = lista_genero_livro.value;
+        var totalPgsVar = Number(input_total_pgs.value);
+        var pgsLidasVar = Number(input_pgs_lidas.value);
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (nomeLivroVar == "" || autorVar == "" || generoVar == 0 || totalPgsVar <= 0 || pgsLidasVar <= 0 || pgsLidasVar > totalPgsVar) {
+            // window.alert("Preencha todos os campos para prosseguir!");
+            qtd_cadastro = 0;
+            if (nomeLivroVar == "") {
+                alert('Nome está em branco')
+            } else if (autorVar == "") {
+                alert('Autor está em branco')
+            } else if (generoVar == 0) {
+                alert('Gênero está em branco')
+            } else if (totalPgsVar <= 0) {
+                alert('Total de páginas está em branco')
+            } else if (pgsLidasVar < 0) {
+                alert('Total de páginas lidas está em branco')
+            } else if (pgsLidasVar > totalPgsVar) {
+                alert('Total de páginas lidas é maior que total de páginas do livro!')
+            }
+            return false;
+        }
+
+        fetch(`/livros/cadastrar/${idUsuario}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeLivro: nomeLivroVar,
+                autor: autorVar,
+                genero: generoVar,
+                totalPgs: totalPgsVar,
+                pgsLidas: pgsLidasVar,
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso pelo usuário de ID: " + idUsuario + "!");
+                lista_livro.push(nomeLivroVar);
+                lista_autor.push(autorVar);
+                lista_genero.push(generoVar);
+                lista_total_pgs.push(totalPgsVar);
+                lista_pgs_lidas.push(pgsLidasVar);
+                qtd_cadastros = Number(numero_cadastro.innerHTML);
+
+                qtd_cadastros += 1;
+                numero_cadastro.innerHTML = qtd_cadastros;
+                // window.location = "login.html";
+                // limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+    }
+
+    function listar() {
+        div_resultado_lista.innerHTML = '';
+
+        for (var i = 0; i < lista_livro.length; i++) {
+            div_resultado_lista.innerHTML += `<br>
+    ${i + 1}º Livro: <b>${lista_livro[i]}</b> <br>
+    Autor: <b>${lista_autor[i]}</b> <br>
+    Gênero: <b>${lista_genero[i]}</b> <br>
+    Total de páginas: <b>${lista_total_pgs[i]}</b> <br>
+    Quantidade de páginas lidas: <b>${lista_pgs_lidas[i]}</b> <br>`
+        }
+    }
+
+</script>

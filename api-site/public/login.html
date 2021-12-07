@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estante Viajante | Login</title>
+
+  <script src="./js/funcoes.js"></script>
+
+  <link rel="icon" href="./assets/logo/logo_livro_black.png">
+  <link rel="stylesheet" href="./css/login_EV.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.google.com/specimen/Nanum+Myeongjo#standard-styles" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="./assets/logo/logo_livro_black.png">
+      </div>
+      <span id="titulo">Estante Viajante</span>
+      <ul class="navbar">
+        <li><a href="./index.html">Inicial</a></li>
+        <li>|</li>
+        <li>
+          <a class="pagina_atual">Login</a>
+        </li>
+        <li>
+          <a href="./cadastro.html">Cadastro</a>
+        </li>
+      </ul>
+    </div>
+    <!--fim div container-->
+  </div>
+  <!--fim div header-->
+
+  <div class="banner">
+    <div class="container">
+      <div class="card-medio">
+        <h2>Olá de volta!</h2>
+        <div class="formulario">
+          <div class="div-form">
+
+            E-mail:
+            <input id="email" type="text" placeholder="Login">
+            <br>
+            Senha:
+            <input id="senha" type="password" placeholder="******">
+            <br>
+            <button class="btn-entrar" onclick="entrar()">
+              Entrar
+            </button>
+          </div>
+
+          <div id="div_aguardar" class="loading-div">
+            <img src="./assets/circle-loading.gif" id="loading-gif">
+          </div>
+
+          <div id="div_erros_login">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--footer inicio-->
+    <div class="footer">
+      <div class="container">
+        <h4>Estante Viajante. Feito com muito amor e dedicação por uma aluna SP Tech &copy; 2021</h4>
+      </div>
+    </div>
+    <!--footer fim-->
+</body>
+
+</html>
+
+<script>
+
+  function limparFormulario() {
+    document.getElementById("form_login").reset();
+  }
+
+  function entrar() {
+    aguardar();
+
+    var emailVar = email.value;
+    var senhaVar = senha.value;
+
+    // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+    if (emailVar == "" || senhaVar == "") {
+      window.alert("Preencha todos os campos para prosseguir!");
+      finalizarAguardar();
+      return false;
+    }
+
+    if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+      window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+      finalizarAguardar();
+    }
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: emailVar,
+        senha: senhaVar,
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+
+          setTimeout(function () {
+            window.location = "./dashboard/cards.html";
+          }, 1000); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
+</script>
